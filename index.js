@@ -19,7 +19,7 @@ app.get('/', function (req, res) {
 
 // for Facebook verification
 app.get('/webhook/', function (req, res) {
-    if (req.query['hub.verify_token'] === '<HARVEY_BOT_DEVELOPMENT>') {
+    if (req.query['hub.verify_token'] === 'HARVEY_BOT_DEVELOPMENT') {
         res.send(req.query['hub.challenge'])
     }
     res.send('Error, wrong token, woops')
@@ -52,7 +52,7 @@ app.post('/webhook/', function (req, res) {
     res.sendStatus(200)
 })
 
-var token = "<EAAQtPmyLcRwBAA0ezYpsHNfkFWA6MnuG7nPbNNvWvVJ9fzmCSJkrWzS4ND1JU4zoejf1Ondyv0sdzq7YtZBCZCKXZALALbCCYOtJ9Idcr7zo3t15POfXXM7thqL57q5sgfXYvCBaZAo0HzTDvMCLjScq71ZB0Nm4AA44ew68okgZDZD>"
+var token = "EAAQtPmyLcRwBAA0ezYpsHNfkFWA6MnuG7nPbNNvWvVJ9fzmCSJkrWzS4ND1JU4zoejf1Ondyv0sdzq7YtZBCZCKXZALALbCCYOtJ9Idcr7zo3t15POfXXM7thqL57q5sgfXYvCBaZAo0HzTDvMCLjScq71ZB0Nm4AA44ew68okgZDZD"
 
 function sendTextMessage(sender, text) {
     messageData = {

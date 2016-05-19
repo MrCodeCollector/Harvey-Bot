@@ -4,6 +4,20 @@ var request = require('request');
 var Wit = require('node-wit');
 var app = express();
 
+const getWit = () => {
+  return new Wit(Config.P4OHFVSITFMWAVO5VIPLFMC77DDTKEPI, actions);
+};
+
+exports.getWit = getWit;
+
+// bot testing mode
+// http://stackoverflow.com/questions/6398196
+if (require.main === module) {
+  console.log("Bot testing mode.");
+  const client = getWit();
+  client.interactive();
+}
+
 app.set('port', (process.env.PORT || 5000));
 
 // Process application/x-www-form-urlencoded

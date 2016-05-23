@@ -6,6 +6,8 @@ var app = express();
 
 app.set('port', (process.env.PORT || 5000));
 
+app.listen((process.env.PORT || 3000));
+
 // Process application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}));
 
@@ -19,7 +21,7 @@ app.get('/', function (req, res) {
 
 // for Facebook verification
 app.get('/webhook/', function (req, res) {
-    if (req.query['hub.verify_token'] === 'FB_VERIFY_TOKEN') {
+    if (req.query['hub.verify_token'] === process.env.FB_VERIFY_TOKEN) {
         res.send(req.query['hub.challenge'])
     }
     res.send('Error, wrong token, woops')
@@ -39,6 +41,7 @@ app.post('/webhook/', function (req, res) {
             text = event.message.text
             if(text === 'How\'s the Weather?') {
               sendWeatherMessage(sender)
+              continue
             }
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
         }
@@ -46,7 +49,7 @@ app.post('/webhook/', function (req, res) {
     res.sendStatus(200)
 })
 
-var token = "FB_PAGE_TOKEN"
+var token = process.env.PAGE_TOKEN
 
 function sendWeatherMessage(sender) {
   messageData = {

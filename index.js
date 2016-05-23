@@ -21,7 +21,7 @@ app.get('/', function (req, res) {
 
 // for Facebook verification
 app.get('/webhook/', function (req, res) {
-    if (req.query['hub.verify_token'] === process.env.FB_VERIFY_TOKEN) {
+    if (req.query['hub.verify_token'] === 'harvey-bot-token') {
         res.send(req.query['hub.challenge'])
     }
     res.send('Error, wrong token, woops')
@@ -49,7 +49,7 @@ app.post('/webhook/', function (req, res) {
     res.sendStatus(200)
 })
 
-var token = process.env.PAGE_TOKEN
+var token = 'EAAQtPmyLcRwBAJFhGdP1wzFtTYjZBBZAT3fIUJboiuQmTNidpBcnPOPH5FVHDyZCtZAzRMiR6PCDhg8C2CEmOWjT6B2jRxljafwenZCoRWwE4fB107mboR8EfUVHKwlyI9GTOhDIsZBfFMAb7ZBh6McxzbsHOUHidhmVQ34kBVT6gZDZD'
 
 function sendWeatherMessage(sender) {
   messageData = {
@@ -85,7 +85,7 @@ function sendWeatherMessage(sender) {
     }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token:process.env.PAGE_TOKEN},
+        qs: {access_token:token},
         method: 'POST',
         json: {
             recipient: {id:sender},

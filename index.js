@@ -88,18 +88,18 @@ function sendWeatherMessage(sender) {
                         "title": "Hourly Forecast",
                         "payload": "Payload for first element in a generic bubble",
                     }],
-                }
-                // , {
-                //     "title": "Second card",
-                //     "subtitle": "possible other stuff",
-                //     "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
-                //     "buttons": [{
-                //         "type": "postback",
-                //         "title": "Postback",
-                //         "payload": "Payload for second element in a generic bubble",
-                //     }
-                  ],
-                }]
+                // }
+                // // , {
+                // //     "title": "Second card",
+                // //     "subtitle": "possible other stuff",
+                // //     "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
+                // //     "buttons": [{
+                // //         "type": "postback",
+                // //         "title": "Postback",
+                // //         "payload": "Payload for second element in a generic bubble",
+                // //     }
+                //   ],
+                // }]
             }
         }
     }

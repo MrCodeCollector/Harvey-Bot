@@ -1,27 +1,24 @@
 {
-  "name": "test",
+  "name": "harvey-bot",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.15.1",
-    "express": "^4.13.4",
-    "node-fetch": "^1.5.2",
-    "node-wit": "^3.3.0",
-    "request": "^2.72.0"
-  },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MrCodeCollector/Harvey-Bot.git"
   },
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/MrCodeCollector/Harvey-Bot/issues"
   },
   "homepage": "https://github.com/MrCodeCollector/Harvey-Bot#readme",
-  "description": ""
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "request": "^2.72.0"
+  }
 }

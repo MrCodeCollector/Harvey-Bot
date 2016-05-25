@@ -36,6 +36,9 @@ app.post('/webhook/', function (req, res) {
         sender = event.sender.id
         if (event.message && event.message.text) {
             text = event.message.text
+            if(text === 'What\'s the weather like?') {
+              sendWeatherMessage(sender)
+            }
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
         }
     }
@@ -74,7 +77,7 @@ function sendWeatherMessage(sender) {
                 "elements": [{
                     "title": "Weather Forecast",
                     "subtitle": "Weather type",
-                    "image_url": "http://phandroid.s3.amazonaws.com/wp-content/uploads/2014/04/yahoo.png",
+                    "image_url": "https://d3rnbxvnd0hlox.cloudfront.net/images/channels/7/icons/medium.png",
                     "buttons": [{
                         "type": "web_url",
                         "url": "https://weather.com",

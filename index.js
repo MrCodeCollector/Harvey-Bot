@@ -78,7 +78,7 @@ function sendWeatherMessage(sender) {
                 "elements": [{
                     "title": "Current forecast",
                     "subtitle": "The weather in San Jose, CA is mostly cloudy and 57°F.",
-                    // "image_url": "https://d3rnbxvnd0hlox.cloudfront.net/images/channels/7/icons/medium.png",
+                    "image_url": "http://www.sanfrancisco.travel/sites/sftraveldev.prod.acquia-sites.com/files/field/image/site-photo.jpg",
                     "buttons": [{
                         "type": "web_url",
                         "url": "https://weather.com",
@@ -88,18 +88,18 @@ function sendWeatherMessage(sender) {
                         "title": "Hourly Forecast",
                         "payload": "Payload for first element in a generic bubble",
                     }],
-                // }
-                // // , {
-                // //     "title": "Second card",
-                // //     "subtitle": "possible other stuff",
-                // //     "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
-                // //     "buttons": [{
-                // //         "type": "postback",
-                // //         "title": "Postback",
-                // //         "payload": "Payload for second element in a generic bubble",
-                // //     }
-                //   ],
-                // }]
+                }
+                , {
+                    "title": "Other weather stuff",
+                    "subtitle": "possible other stuff",
+                    "image_url": "http://www.sanfrancisco.travel/sites/sftraveldev.prod.acquia-sites.com/files/SanFrancisco_0.jpg",
+                    "buttons": [{
+                        "type": "postback",
+                        "title": "Click me!",
+                        "payload": "Payload for second element in a generic bubble",
+                    }
+                  ],
+                }]
             }
         }
     }

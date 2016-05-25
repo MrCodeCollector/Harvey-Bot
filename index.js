@@ -119,3 +119,54 @@ function sendWeatherMessage(sender) {
         }
     })
 }
+
+function sendNewsMessage(sender) {
+  messageData = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [{
+                    "title": "BBC News",
+                    "subtitle": "Some news here just 4 u ;D",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/SanFrancisco_from_TwinPeaks_dusk_MC.jpg",
+                    "buttons": [{
+                        "type": "web_url",
+                        "url": "http://www.bbc.com/",
+                        "title": "See current news now"
+                    }, {
+                        "type": "postback",
+                        "title": "Click me!",
+                        "payload": "Payload for first element in a generic bubble",
+                    }],
+                }
+                , {
+                    "title": "Other weather stuff",
+                    "subtitle": "possible other stuff",
+                    "image_url": "http://mcmanuslab.ucsf.edu/sites/mcmanuslab.ucsf.edu/files/imagepicker/m/mmcmanus/san-francisco.jpg",
+                    "buttons": [{
+                        "type": "postback",
+                        "title": "Click me!",
+                        "payload": "Payload for second element in a generic bubble",
+                    }
+                  ],
+                }]
+            }
+        }
+    }
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}

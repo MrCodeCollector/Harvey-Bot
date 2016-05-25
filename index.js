@@ -40,6 +40,11 @@ app.post('/webhook/', function (req, res) {
               sendWeatherMessage(sender)
               continue
             }
+
+            if(text === 'Show me current news') {
+              sendNewsMessage(sender)
+              continue
+            }
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
         }
     }

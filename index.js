@@ -76,27 +76,29 @@ function sendWeatherMessage(sender) {
             "payload": {
                 "template_type": "generic",
                 "elements": [{
-                    "title": "Weather Forecast",
-                    "subtitle": "Weather type",
-                    "image_url": "https://d3rnbxvnd0hlox.cloudfront.net/images/channels/7/icons/medium.png",
+                    "title": "Current forecast",
+                    "subtitle": "The weather in San Jose, CA is mostly cloudy and 57°F.",
+                    // "image_url": "https://d3rnbxvnd0hlox.cloudfront.net/images/channels/7/icons/medium.png",
                     "buttons": [{
                         "type": "web_url",
                         "url": "https://weather.com",
-                        "title": "Weather Report"
+                        "title": "Today's Forecast"
                     }, {
                         "type": "postback",
-                        "title": "Postback",
+                        "title": "Hourly Forecast",
                         "payload": "Payload for first element in a generic bubble",
                     }],
-                }, {
-                    "title": "Second card",
-                    "subtitle": "possible other stuff",
-                    "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
-                    "buttons": [{
-                        "type": "postback",
-                        "title": "Postback",
-                        "payload": "Payload for second element in a generic bubble",
-                    }],
+                }
+                // , {
+                //     "title": "Second card",
+                //     "subtitle": "possible other stuff",
+                //     "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
+                //     "buttons": [{
+                //         "type": "postback",
+                //         "title": "Postback",
+                //         "payload": "Payload for second element in a generic bubble",
+                //     }
+                  ],
                 }]
             }
         }

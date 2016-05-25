@@ -37,6 +37,9 @@ app.post('/webhook/', function (req, res) {
         sender = event.sender.id
         if (event.message && event.message.text) {
             text = event.message.text
+            if(text === 'What\'s the weather like in San Jose?') {
+              sendWeatherMessage(sender)
+            }
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
         }
     }
@@ -44,6 +47,55 @@ app.post('/webhook/', function (req, res) {
 })
 
 var token = "EAAQtPmyLcRwBABDJORRklIWNOMgFNqQphGyuASod6kuyZBeYHsgi6vBLj449wbZCrFJZAZAIqWiMJgQwNWpWiirNZAPgFGywsusnY3kMOPDZB9pMAnb5lW7eWvmDjPm19lxtzRzbZCXoy5VFRbuUmXJ1QCJAqZAUUZB7u4R3OBGVQsgZDZD"
+
+function sendWeatherMessage(sender) {
+  messageData = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [{
+                    "title": "Weather Forecast",
+                    "subtitle": "Weather type",
+                    "image_url": "http://phandroid.s3.amazonaws.com/wp-content/uploads/2014/04/yahoo.png",
+                    "buttons": [{
+                        "type": "web_url",
+                        "url": "https://weather.com",
+                        "title": "Weather Report"
+                    }, {
+                        "type": "postback",
+                        "title": "Postback",
+                        "payload": "Payload for first element in a generic bubble",
+                    }],
+                }, {
+                    "title": "Second card",
+                    "subtitle": "possible other stuff",
+                    "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
+                    "buttons": [{
+                        "type": "postback",
+                        "title": "Postback",
+                        "payload": "Payload for second element in a generic bubble",
+                    }],
+                }]
+            }
+        }
+    }
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:process.env.PAGE_TOKEN},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}
 
 function sendTextMessage(sender, text) {
     messageData = {

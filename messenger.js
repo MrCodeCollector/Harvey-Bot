@@ -1,34 +1,17 @@
 'use strict';
 
-// Messenger API integration example
-// We assume you have:
-// * a Wit.ai bot setup (https://wit.ai/docs/quickstart)
-// * a Messenger Platform setup (https://developers.facebook.com/docs/messenger-platform/quickstart)
-// You need to `npm install` the following dependencies: body-parser, express, request.
-//
-// 1. npm install body-parser express request
-// 2. Download and install ngrok from https://ngrok.com/download
-// 3. ./ngrok http 8445
-// 4. WIT_TOKEN=your_access_token FB_PAGE_ID=your_page_id FB_PAGE_TOKEN=your_page_token FB_VERIFY_TOKEN=verify_token node examples/messenger.js
-// 5. Subscribe your page to the Webhooks using verify_token and `https://<your_ngrok_io>/fb` as callback URL.
-// 6. Talk to your bot on Messenger!
-
 const bodyParser = require('body-parser');
 const express = require('express');
 const request = require('request');
 
-//API URL's
-var WeatherURL = ""; //First part of API call
-
-// When not cloning the `node-wit` repo, replace the `require` like so:
-// const Wit = require('node-wit').Wit;
+//  Wit.ai object
 const Wit = require('node-wit').Wit;
-
-// Webserver parameter
-const PORT = process.env.PORT || 5000;
 
 // Wit.ai parameters
 const WIT_TOKEN = 'P4OHFVSITFMWAVO5VIPLFMC77DDTKEPI';
+
+// Webserver parameter
+const PORT = process.env.PORT || 5000;
 
 // Messenger API parameters
 const FB_PAGE_ID = '1226883410658208';
@@ -163,11 +146,11 @@ const actions = {
   error(sessionId, context, error) {
     console.log(error.message);
   },
-  // You should implement your custom actions here
-  // See https://wit.ai/docs/quickstart
 
   'fetch-weather' : (sessionId, context, cb) => {
-    console.log("context.loc: " + context.loc);
+    // console.log("context.loc: " + context.loc);
+
+    //API call to wunderground Weather
     WundergroundWeather(context.loc, (error, data) => {
       if(data) {
         context.forecast = "It's looking " + data.forecast.txt_forecast.forecastday[0].fcttext;

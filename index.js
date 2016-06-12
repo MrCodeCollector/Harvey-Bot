@@ -4,7 +4,21 @@ var request = require('request')
 var app = express()
 
 var Wit = require('node-wit').Wit;
-var client = new Wit(P4OHFVSITFMWAVO5VIPLFMC77DDTKEPI, actions);
+
+var actions = {
+  say(sessionId, context, message, cb) {
+    console.log(message);
+    cb();
+  },
+  merge(sessionId, context, entities, message, cb) {
+    cb(context);
+  },
+  error(sessionId, context, error) {
+    console.log(error.message);
+  },
+};
+
+var client = new Wit('P4OHFVSITFMWAVO5VIPLFMC77DDTKEPI', actions);
 var context = {};
 
 app.set('port', (process.env.PORT || 5000))
@@ -34,22 +48,26 @@ app.listen(app.get('port'), function() {
 })
 
 app.post('/webhook/', function (req, res) {
+
+    console.log('working!')
     messaging_events = req.body.entry[0].messaging
+
     for (i = 0; i < messaging_events.length; i++) {
         event = req.body.entry[0].messaging[i]
         sender = event.sender.id
+
         if (event.message && event.message.text) {
+
             text = event.message.text
 
 
-            client.message(text, context, (error, data) => {
+            client.message(text, context, function (error, data) {
               if (error) {
                 console.log('Oops! Got an error: ' + error);
               } else {
                 witContacted(sender)
-                continue
               }
-            });
+            })
 
 
             if(text === 'What\'s the weather like?') {

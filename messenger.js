@@ -148,15 +148,20 @@ const actions = {
   },
 
   'fetch-weather' : (sessionId, context, cb) => {
-    // console.log("context.loc: " + context.loc);
+    //  console.log("context.loc: " + context.loc);
 
     //API call to wunderground Weather
     WundergroundWeather(context.loc, (error, data) => {
+      console.log("data :" + data);
       if(data) {
+        console.log("context.loc :" + context.loc);
         context.forecast = "It's looking " + data.forecast.txt_forecast.forecastday[0].fcttext;
+
+        cb(context);  //  Update context
+      } else {
+        console.log("oops! Something went wrong.");
       }
     })
-    cb(context);
   }
 }
 
@@ -254,9 +259,9 @@ app.post('/fb', (req, res) => {
 
 //          API's
 var WundergroundWeather = (loc, cb) => {
-  loc = loc.split(' ').join('_');
-  var URL = "http://api.wunderground.com/api/461aebd047dd17e7/forecast/q/CA/" + loc + ".json"; // Finishes API call
-  console.log(WeatherURL);
+  loc = loc.split(' ').join('_'); //  Sanitized input
+  var URL = "http://api.wunderground.com/api/461aebd047dd17e7/forecast/q/CA/" + loc + ".json"; // API call
+  console.log(URL);
 
   request({
       url: URL,

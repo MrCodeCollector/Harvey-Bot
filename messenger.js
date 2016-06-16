@@ -155,7 +155,7 @@ const actions = {
       console.log("data :" + data);
       if(data) {
         console.log("context.loc :" + context.loc);
-        context.forecast = "It's looking " + data.forecast.txt_forecast.forecastday[0].fcttext;
+        context.forecast = data.forecast.txt_forecast.forecastday[0].fcttext;
 
         cb(context);  //  Update context
       } else {
@@ -194,10 +194,10 @@ app.post('/fb', (req, res) => {
 
 
   //Check our keys
-  // console.log("FB_PAGE_ID: " + FB_PAGE_ID);
-  // console.log("messaging: " + messaging);
-  // console.log("messaging.message: " + messaging.message);
-  // console.log("messaging.recipient.id: " + messaging.recipient.id);
+   console.log("FB_PAGE_ID: " + FB_PAGE_ID);
+   console.log("messaging: " + messaging);
+   console.log("messaging.message: " + messaging.message);
+   console.log("messaging.recipient.id: " + messaging.recipient.id);
 
   if (messaging && messaging.message && messaging.recipient.id === FB_PAGE_ID) {
     // Yay! We got a new message!
@@ -258,7 +258,7 @@ app.post('/fb', (req, res) => {
 });
 
 //          API's
-var WundergroundWeather = (loc, cb) => {
+const WundergroundWeather = (loc, cb) => {
   loc = loc.split(' ').join('_'); //  Sanitized input
   var URL = "http://api.wunderground.com/api/461aebd047dd17e7/forecast/q/CA/" + loc + ".json"; // API call
   console.log(URL);

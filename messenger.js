@@ -16,11 +16,11 @@ const PORT = process.env.PORT || 5000;
 // Messenger API parameters
 const FB_PAGE_ID = '1226883410658208';
 if (!FB_PAGE_ID) {
-  throw new Error('missing FB_PAGE_ID');
+    throw new Error('missing FB_PAGE_ID');
 }
 const FB_PAGE_TOKEN = 'EAAQtPmyLcRwBAD2jtR2QZB4vcNztAjUGVGzltqRkHpYEv6pTuypnDxd6nJxoLru3wAoZA2nz16YoZAoZAjkunmBHR4KibCZA1l9TfjKjoGMBgCrbyq02JMjb5Ihl7ZCrv2uShAOmoG5yMYdfpTZBWRTwmJ2wFHxIRTin17ZBkjZAg4wZDZD';
 if (!FB_PAGE_TOKEN) {
-  throw new Error('missing FB_PAGE_TOKEN');
+    throw new Error('missing FB_PAGE_TOKEN');
 }
 const FB_VERIFY_TOKEN = 'harvey-development';
 
@@ -29,54 +29,52 @@ const FB_VERIFY_TOKEN = 'harvey-development';
 // See the Send API reference
 // https://developers.facebook.com/docs/messenger-platform/send-api-reference
 const fbReq = request.defaults({
-  uri: 'https://graph.facebook.com/me/messages',
-  method: 'POST',
-  json: true,
-  qs: { access_token: FB_PAGE_TOKEN },
-  headers: {'Content-Type': 'application/json'},
+    uri: 'https://graph.facebook.com/me/messages',
+    method: 'POST',
+    json: true,
+    qs: { access_token: FB_PAGE_TOKEN },
+    headers: {'Content-Type': 'application/json'},
 });
 
 const fbMessage = (recipientId, msg, cb) => {
-  const opts = {
-    form: {
-      recipient: {
-        id: recipientId,
-      },
-      message: {
-        text: msg,
-      },
-    },
-  };
-  fbReq(opts, (err, resp, data) => {
-    if (cb) {
-      cb(err || data.error && data.error.message, data);
-    }
-  });
+    const opts = {
+        form: {
+            recipient: {
+                id: recipientId,
+            },
+            message: {
+                text: msg,
+            },
+        },
+    };
+    fbReq(opts, (err, resp, data) => {
+        if (cb) {
+            cb(err || data.error && data.error.message, data);
+        }
+    });
 };
 
 // See the Webhook reference
 // https://developers.facebook.com/docs/messenger-platform/webhook-reference
 const getFirstMessagingEntry = (body) => {
-  const val = body.object == 'page' &&
-    body.entry &&
-    Array.isArray(body.entry) &&
-    body.entry.length > 0 &&
-    body.entry[0] &&
-    body.entry[0].id === FB_PAGE_ID &&
-    body.entry[0].messaging &&
-    Array.isArray(body.entry[0].messaging) &&
-    body.entry[0].messaging.length > 0 &&
-    body.entry[0].messaging[0]
-  ;
-  return val || null;
+    const val = body.object == 'page' &&
+        body.entry &&
+        Array.isArray(body.entry) &&
+        body.entry.length > 0 &&
+        body.entry[0] &&
+        body.entry[0].id === FB_PAGE_ID &&
+        body.entry[0].messaging &&
+        Array.isArray(body.entry[0].messaging) &&
+        body.entry[0].messaging.length > 0 &&
+        body.entry[0].messaging[0];
+        return val || null;
 };
 
 const firstEntityValue = (entities, entity) => {
   const val = entities && entities[entity] &&
     Array.isArray(entities[entity]) &&
     entities[entity].length > 0 &&
-    entities[entity][0].value
-  ;
+    entities[entity][0].value;
   if (!val) {
     return null;
   }
@@ -175,7 +173,7 @@ app.listen(app.get('port'));
 app.use(bodyParser.json());
 
 // Webhook setup
-app.get('/fb', (req, res) => {
+app.get('/', (req, res) => {
   if (!FB_VERIFY_TOKEN) {
     throw new Error('missing FB_VERIFY_TOKEN');
   }

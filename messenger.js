@@ -18,11 +18,11 @@ const FB_PAGE_ID = '1226883410658208';
 if (!FB_PAGE_ID) {
     throw new Error('missing FB_PAGE_ID');
 }
-const FB_PAGE_TOKEN = 'EAAQtPmyLcRwBAD2jtR2QZB4vcNztAjUGVGzltqRkHpYEv6pTuypnDxd6nJxoLru3wAoZA2nz16YoZAoZAjkunmBHR4KibCZA1l9TfjKjoGMBgCrbyq02JMjb5Ihl7ZCrv2uShAOmoG5yMYdfpTZBWRTwmJ2wFHxIRTin17ZBkjZAg4wZDZD';
+const FB_PAGE_TOKEN = 'EAACEdEose0cBAIvvYpWw5A3zSRzjWEQmjB6ExiL9xwaykJPYPJzuebYMptrZBnZAfR2o6y3uMyZAjqGpDm9HyInIUwjX6PAZC5j2AcJ1IqZCKIZAPvF5NZC0aDMGSJbwasr6oAdxMCf8fJrWU8cqGfj7Ei1kShkJVApbLDBndmo6wZDZD';
 if (!FB_PAGE_TOKEN) {
     throw new Error('missing FB_PAGE_TOKEN');
 }
-const FB_VERIFY_TOKEN = 'harvey-development';
+const FB_VERIFY_TOKEN = 'harvey';
 
 // Messenger API specific code
 

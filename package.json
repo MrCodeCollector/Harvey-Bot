@@ -1,7 +1,7 @@
 {
   "name": "harvey-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "Repo for Harvey Bot",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/MrCodeCollector/Harvey-Bot.git"
   },
-  "author": "",
+  "author": "Alex Pena",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/MrCodeCollector/Harvey-Bot/issues"

@@ -83,6 +83,8 @@ const firstEntityValue = (entities, entity) => {
   return typeof val === 'object' ? val.value : val;
 };
 
+
+
 // Wit.ai bot specific code
 
 // This will contain all user sessions.
@@ -135,6 +137,7 @@ const actions = {
       cb();
     }
   },
+
   merge(sessionId, context, entities, message, cb) {
     // Retrieve the location entity and store it into a context field
     const loc = firstEntityValue(entities, 'location');
